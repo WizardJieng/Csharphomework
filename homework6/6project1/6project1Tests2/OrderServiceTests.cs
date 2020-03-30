@@ -1,14 +1,19 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using _6project1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _5project1
+
+namespace _6project1.Tests
 {
-    class Program
-    {      
-        static void Main(string[] args)
+    [TestClass()]
+    public class OrderServiceTests
+    {
+        [TestMethod()]
+        public void TestMethods()
         {
             //添加订单项
             List<OrderItem> orderitem1 = new List<OrderItem>();
@@ -31,22 +36,27 @@ namespace _5project1
             //当前订单   
             Console.WriteLine("\n添加操作后当前订单为:");
             orderservice.ShowOrders();
+            Console.WriteLine("\n将所有的订单序列化为XML文件后为:");
+            orderservice.Export();
+            Console.WriteLine("\n从XML文件中载入订单为:");
+            orderservice.Import();
             orderservice.SortOrders();
             Console.WriteLine("\n对订单号进行排序操作后当前订单为:");
             //改变的订单          
             orderservice.ShowOrders();
             //查询操作
             Console.WriteLine("\n查询操作：");
-            orderservice.SeekID("01");   
+            orderservice.SeekID("01");
             orderservice.SeekName("小向");
             //当前订单      
             orderservice.DeleteOrder(order2);
             Console.WriteLine("\n删除操作后当前订单为:");
             orderservice.ShowOrders();
+            //序列与反序列化
+            Console.WriteLine("\n将所有的订单序列化为XML文件后为:");
+            orderservice.Export();
+            Console.WriteLine("\n从XML文件中载入订单为:");
+            orderservice.Import();
         }
     }
 }
-
-
-
-

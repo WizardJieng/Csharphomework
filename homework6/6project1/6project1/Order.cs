@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _5project1
+namespace _6project1
 {
-    class Order
+    [Serializable]
+    public class Order
     {
         //订单需要重写Equals方法，确保添加的订单不重复，每个订单的订单明细不重复。
         //订单、订单明细、客户、货物等类添加ToString方法，用来显示订单信息。
@@ -30,12 +31,13 @@ namespace _5project1
         public string address
         {
             set; get;
-        }       
+        }
         //订单项的集合
         public List<OrderItem> orderitems;
-        public Order(string id,  string name, List<OrderItem> orderitems)
+        public Order() { }
+        public Order(string id, string name, List<OrderItem> orderitems)
         {
-            this.id = id;                    
+            this.id = id;
             this.name = name;
             this.orderitems = orderitems;
             var seek = orderitems.Where(x => true);
@@ -48,7 +50,7 @@ namespace _5project1
             {
                 itemTostring.Append(x.ToString());
             }
-            return $"id:{id}  name:{name}  {itemTostring}  money_total:{money_total}";            
+            return $"id:{id}  name:{name}  {itemTostring}  money_total:{money_total}";
         }
         public override bool Equals(object obj)
         {
